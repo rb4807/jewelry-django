@@ -1,0 +1,47 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="flex justify-center items-center">
+        <div class="bg-white p-8 rounded-lg shadow-md w-96">
+            <form method="post" action="profile" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-4 flex justify-center items-center relative">
+                    <div class="relative w-36 h-36 rounded-full overflow-hidden">
+                        {% if user_profile.profile_photo %}
+                        <img src="{{ user_profile.profile_photo.url }}" alt="Profile Photo" class="w-full h-full object-cover">
+                        {% else %}
+                        <img src="{% static 'images/explore/default.png' %}" alt="default Photo" class="w-full h-full object-cover">
+                        {% endif %}
+                    </div>
+                    <label for="id_profile_photo" class="bg-white absolute bottom-0 top-18 left-44 p-1 rounded-full cursor-pointer ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                            <path d="M13.5 6.5l4 4" />
+                        </svg>
+                        <input type="file" id="id_profile_photo" name="profile_photo" class="hidden" value="{% if user_profile.profile_photo %}{{ user_profile.profile_photo.url }}{% else %}{% static 'images/explore/default.png' %}{% endif %}">
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600">Username</label>
+                    <input type="text" name="username" class="mt-1 p-2 w-full border rounded-md" value="{{ user_profile.username }}">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600">Email</label>
+                    <input type="email" name="email" class="mt-1 p-2 w-full border rounded-md" value="{{ user_profile.email }}">
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600">First Name</label>
+                        <input type="text" name="first_name" class="mt-1 p-2 w-full border rounded-md" value="{{ user_profile.first_name }}">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600">Last Name</label>
+                        <input type="text" name="last_name" class="mt-1 p-2 w-full border rounded-md" value="{{ user_profile.last_name }}">
+                    </div>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">Save Changes</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}  

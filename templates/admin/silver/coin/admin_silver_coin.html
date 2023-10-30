@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="{% static 'css/stock.css' %}">
+        <link rel="stylesheet" href="{% static 'css/search.css' %}">
+        <title>Coin</title>
+    </head>
+    <style>
+        html{
+        scroll-behavior: smooth;
+        width: 100%;
+        }
+   
+        body 
+        {
+            background-image: linear-gradient(rgb(8, 7, 7), rgba(0, 0, 0, 0.24)),url('{% static 'images/silver/Coin.jpg' %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Open Sans', sans-serif;   
+        }
+    </style>
+    <body>
+        <!-- navigation -->
+        <nav class="text-white items-center py-4 px-5">
+            <div class="relative">
+            <h1 class=" ml-[13%] text-xl mt-[1%] font-bold">Mahila</h1>
+            <div class="absolute top-0 left-[40%] tems-center">
+                <div class="searchbar">
+                    <div class="searchbar-wrapper">
+                        <div class="searchbar-left">
+                            <div class="search-icon-wrapper">
+                                <span class="search-icon searchbar-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <form action="{% url 'search' %}" method="get">
+                            <div class="searchbar-center">
+                                <div class="searchbar-input-spacer"></div>
+                                <input type="search" type="submit" name="query" class="searchbar-input" maxlength="2048" autocapitalize="off" autocomplete="off"  placeholder="Search your favorite">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <ul class=" absolute top-0 left-[80%] mt-[1%] flex space-x-10 text-gray-300">
+                <li>
+                    <a href ="{% url 'login' %}" target="blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>
+                    </a>
+                </li>
+            </ul> 
+        </div>  
+        </nav>
+
+        <!-- collection -->
+        
+        <p class="text-l text-white text-2xl ml-[30%] mt-[1.5%] mb-[2%]">Browse your favourite Coin. We've got them all!</p>
+        <hr>
+        <div class="flex justify-center">
+            <a href="{% url 'add_silver_coin' %}" class="bg-blue-500 mt-4 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">Add Coin</a>
+        </div>
+      
+      
+        <div class="flex flex-row flex-wrap justify-evenly text-sm "> 
+            {% for d in co %} 
+                <div class="card">
+                    <div class="container-image">
+                        <img class="image-circle" src="{{d.image.url}}" alt="">
+                        <h4 class=" text-white text-l font-semibold mt-[106%] ml-[16%]">{{d.name}}</h4>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>{{d.name}}</span>
+                            <h1 class="text-xl font-semibold">₹{{d.price}}.00</h1>
+                            <div class="flex flex-row gap-2">
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'add_to_cart' d.id %}">
+                                        <button class="add-to-cart-btn">Add to Cart</button>
+                                    </a>
+                                    <a href="{% url 'update_silver_coin' d.id %}">
+                                        <button class="add-to-cart-btn">Edit</button>
+                                    </a>
+                                    <form method="post" action="{% url 'delete_silver_coin' d.id %}" >
+                                        {% csrf_token %}
+                                        <button type="submit" class="add-to-cart-btn">Delete</button>
+                                    </form>                               
+                                {% else %}
+                                    <a href="{% url 'login' %}">
+                                        <button class="add-to-cart-btn">Add to Cart</button>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <img class="img-product" src="{{d.image.url}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>    
+
+        <!-- footer -->
+
+        <nav class="bg-gradient-to-r from-black to-transparent text-white py-0 px-4 mt-[2%]" id="support">
+            <p class="text-white text-2xl ml-[40%] mt-[5%] mb-[2%]">Brand Promise for Gold Jewellery</p>
+            <hr>
+            <ul class="flex flex-wrap justify-evenly  space-x-10 ml-[10%] mt-[2%]">
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">BIS Hallmarked</h1>
+                    <div class="flex flex-col ml-[15%]">
+                        <img class="w-[10rem] mt-[13%]" src="{% static 'images/bis.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Certified Diamonds</h1>
+                    <div class="flex flex-col">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate ml-[29%]" width="100" height="100" viewBox="0 0 24 24" stroke-width="2" stroke="#FFA41B" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M15 15m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                            <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5" />
+                            <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73" />
+                            <path d="M6 9l12 0" />
+                            <path d="M6 12l3 0" />
+                            <path d="M6 15l2 0" />
+                        </svg>            
+                    </div>  
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Lifetime Exchange</h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-exchange ml-[29%]" width="100" height="100" viewBox="0 0 24 24" stroke-width="2" stroke="#FFA41B" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 10h14l-4 -4" />
+                        <path d="M17 14h-14l4 4" />
+                    </svg>   
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Easy 10 days return</h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-truck-return ml-[29%]" width="100" height="100" viewBox="0 0 24 24" stroke-width="2" stroke="#FFA41B" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v6h-5l2 2m0 -4l-2 2" />
+                        <path d="M9 17l6 0" />
+                        <path d="M13 6h5l3 5v6h-2" />
+                    </svg>  
+                </div>
+            </ul>
+        </nav>
+        <nav class="bg-gradient-to-r from-black to-transparent text-white py-4 px-5" id="support">
+            <ul class="flex space-x-10 mb-8">
+                <div class="flex flex-col ml-[10%] ">
+                    <h1 class="text-2xl font-bold">Our Services</h1>
+                    <li>
+                        <a href="{% url 'book_appointment' %}">Appointments</a><br><a href="{% url 'repair' %}">Repair and fix</a><br><a href="{% url 'piercing' %}">Ear Piercing</a><br><a href="{% url 'piercing' %}">Nose Piercing</a><br><a href="{% url 'polish' %}">Gold Polishing</a>
+                    </li>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Useful Links</h1>
+                    <li>
+                        <a href="">Delivery Information<br>International Shipping<br>Payment Option<br>Track Your Order<br>Return<br>Find a store</a>
+                    </li>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Contact Us</h1>
+                    <li>
+                        <a href="https://www.facebook.com">Facebook</a><br><a href="https://twitter.com"/>Twitter</a><br><a href="https://www.youtube.com"/>YouTube</a>
+                    </li>
+                </div>  
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Mail Us:</h1>
+                    <li>
+                        <a href="{% url 'contact' %}">mahila@gmail.com<br> <h1 class=" text-xl font-bold">Telephone:</h1>0123-456789</a>
+                    </li>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Registered Showroom Address:</h1>
+                    <li>
+                        <a href="https://www.google.com/maps/">ABCD Mall,<br>Mahila Fashion Jewellery,<br> G B Road, Palakkad, 678001,<br>Kerala, India</a>
+                    </li>
+                </div>
+            </ul>
+            <hr>
+            <div class="mt-[2%] text-center">
+                <p>
+                    &copy; 2023 Mahila Fashion Jewellery. All rights reserved. |
+                    <a href="#">Privacy Policy</a> | <a href="#">Terms and Conditions</a>
+                </p>
+            </div>
+        </nav>
+    </body>
+</html>
+            

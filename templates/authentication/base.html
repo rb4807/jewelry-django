@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    </head>
+    <body>
+        <div class="flex h-screen">
+            <!-- Side Navbar -->
+            <div class="bg-gradient-to-r from-rose-600 to-purple-700 text-white w-1/4 flex flex-col">
+                {% if user.is_authenticated %}
+                    <div class="p-4">
+                        <h2 class="text-2xl font-bold">Hello, {{user.first_name}}</h2>
+                    </div>
+                {% endif %}
+                <ul class="flex-1 py-4">
+                    <li class="px-6 py-3 hover:bg-gradient-to-r from-rose-700 to-purple-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6m12 0a9 9 0 110-18 9 9 0 010 18z"></path>
+                        </svg>
+                        <a href="{% url 'profile' %}">Profile</a> 
+                    </li>
+                    <li class="px-6 py-3 hover:bg-gradient-to-r from-rose-700 to-purple-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 inline-block icon icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                            <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                            <path d="M17 17h-11v-14h-2" />
+                            <path d="M6 5l14 1l-1 7h-13" />
+                        </svg>
+                        <a href="{% url 'cart' %}">My cart</a>      
+                    </li>
+                    <li class="px-6 py-3 hover:bg-gradient-to-r from-rose-700 to-purple-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 inline-block icon icon-tabler icon-tabler-truck-return" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                            <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                            <path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v6h-5l2 2m0 -4l-2 2" />
+                            <path d="M9 17l6 0" />
+                            <path d="M13 6h5l3 5v6h-2" />
+                          </svg>
+                        My order
+                    </li>
+                    <li class="px-6 py-3 hover:bg-gradient-to-r from-rose-700 to-purple-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 inline-block icon icon-tabler icon-tabler-calendar-stats" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+                            <path d="M18 14v4h4" />
+                            <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                            <path d="M15 3v4" />
+                            <path d="M7 3v4" />
+                            <path d="M3 11h16" />
+                          </svg>
+                        <a href="{% url 'appointment_list' %}">My Appointments</a>      
+                    </li>
+                    <li class="px-6 py-3 hover:bg-gradient-to-r from-rose-700 to-purple-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Settings
+                    </li>
+                </ul>
+                <div class="p-4">
+                    <a href="{% url 'logout' %}">        
+                        <button class="bg-gradient-to-r from-rose-800 to-purple-800 px-4 py-2 rounded-full hover:bg-indigo-700">Logout</button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="w-3/4 p-4 bg-gray-100 text-black ">
+                <h1 class="text-center mb-5 text-2xl font-bold">Mahila</h1>
+                {% block content %}
+                {% endblock content %}    
+            </div>
+        </div>
+    </body>
+</html>

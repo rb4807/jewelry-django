@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .invoice {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+        .bill-info {
+            float: left;
+        }
+        .customer-info {
+            float: right;
+        }
+        .order-table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-table th, .order-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        .order-table th {
+            background-color: #333;
+            color: #fff;
+        }
+        tfoot{color:black;
+            font-size: 14px;
+        
+        }
+        .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .notes {
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <div class="header">
+            <h1>Mahila Fashion Jewellery</h1>
+        </div>
+        <div class="bill-info">
+            <p><strong>Bill Date:</strong> {{ date }}</p>
+            <p><strong>Bill Number:</strong> {{ id }}</p>
+            <p><strong>Delivery Date:</strong></p>
+        </div>
+        <div class="customer-info">
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Phone Number:</strong> {{ number }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Address:</strong> {{ address }}, {{ pincode }}, {{ country }}</p>
+        </div>
+        <table class="order-table">
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Sub Total</th>
+            </tr>
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ cartItem_quantity }}</td>
+                <td><strong>{{ sub_total }}</strong></td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="2"><strong>Tax (7%)</strong></td>
+                    <td><strong>Rs.{{ tax }}</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Total</strong></td>
+                    <td><strong>Rs.{{ total_with_tax }}</strong></td>
+                </tr>
+            </tfoot>  
+        </table>
+    </div>
+    <div class="notes">
+        <p><i>Thank you</i></p>
+    </div>
+</body>
+</html>

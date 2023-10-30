@@ -1,0 +1,51 @@
+{% extends 'appointments/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="box max-w-md mx-auto p-8 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold text-white mb-4">Book Your Appointment</h2>
+        <form action="#" method="POST">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 gap-4 mb-4">
+                <div class="flex flex-row gap-[13%] mb-4"> 
+                    <div class="block text-white font-semibold mb-2">
+                        {{ form.date.label_tag }}
+                    </div>
+                    <div class="mb-4 bg-white text-black w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+                        {{ form.date }}
+                    </div>
+                </div>
+                <div class="flex flex-row gap-[14%] mb-4"> 
+                    <div class="mb-4 text-white">
+                        {{ form.staff.label_tag }}
+                    </div>
+                    <div class="w-full bg-white border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+                        {{ form.staff }}
+                    </div>
+                </div>
+                <div class="flex flex-row gap-4"> 
+                    <div class="mb-4 text-white">
+                        {{ form.customer.label_tag }}
+                    </div>
+                    <div class="mb-4 bg-white text-black w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+                        {{ form.customer }}
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+
+    
+        
+        
+        
+
+
+
+    

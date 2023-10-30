@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel=0 `"stylesheet"> 
+        <link rel="stylesheet" href="{% static 'css/stock.css' %}">
+        <link rel="stylesheet" href="{% static 'css/search.css' %}">
+        <title>Bangles</title>
+    </head>
+    <style>
+        html{
+        scroll-behavior: smooth;
+        width: 100%;
+        }
+   
+        body 
+        {
+            background-image: linear-gradient(rgb(8, 7, 7), rgba(0, 0, 0, 0.24)),url('{% static 'images/main.jpg' %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Open Sans', sans-serif;   
+        }
+    </style>
+    <body>
+        <!-- navigation -->
+        <nav class="text-white items-center py-4 px-5">
+            <div class="relative">
+                <h1 class=" ml-[13%] text-xl mt-[1%] font-bold">Mahila</h1>
+                <div class="absolute top-0 left-[40%] tems-center">
+                    <div class="searchbar">
+                        <div class="searchbar-wrapper">
+                            <div class="searchbar-left">
+                                <div class="search-icon-wrapper">
+                                    <span class="search-icon searchbar-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <form action="{% url 'search' %}" method="get">
+                                <div class="searchbar-center">
+                                    <div class="searchbar-input-spacer"></div>
+                                    <input type="search" type="submit" name="query" class="searchbar-input" maxlength="2048" autocapitalize="off" autocomplete="off"  placeholder="Search your favorite">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <ul class=" absolute top-0 left-[80%] mt-[1%] flex space-x-10 text-gray-300">
+                    <li>
+                        <a href ="{% url 'login' %}" target="blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <circle cx="12" cy="7" r="4" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul> 
+            </div>  
+        </nav>
+
+        <div class="flex flex-row flex-wrap justify-evenly text-sm "> 
+            {% if pro %}
+                {% for d in pro %} 
+                    <div class="card">
+                        <div class="container-image">
+                            <img class="image-circle" src="{{d.image.url}}" alt="">
+                            <h4 class=" text-white text-u-l font-semibold mt-[110%] ml-[7%]">{{d.name}}</h4>
+                        </div>
+                        <div class="content">
+                            <div class="detail">
+                                <span>{{d.name}}</span>
+                                <h1 class="text-xl font-semibold">₹{{d.price}}.00</h1>
+                                <input type="hidden" class="product-name" value="{{d.name}}"/>
+                                <input type="hidden" class="product-price" value="{{d.price}}"/>
+                                <button>Buy now</button>
+                            </div>
+                            <div class="product-image">
+                                <div class="box-image">
+                                    <img class="img-product" src="{{d.image.url}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+            <div class="relative">
+                <h1 class="mt-20 text-2xl text-center text-white">No such Products available </h1>
+                <div class="absolute top-10 left-[28%]">
+                    <a href ="{% url 'explore' %}" target="blank">
+                        <button class=" mt-[80%] px-8 py-2 text-sm text-zinc-200 font-semibold rounded-full border border-zinc-200 hover:text-white hover:bg-amber-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-zinc-200 focus:ring-offset-2">Continue</button>
+                    </a>
+                </div>
+            </div>
+           {% endif %}
+        </div>  
+    </body>
+</html>  

@@ -1,0 +1,24 @@
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    $("#sort-form").submit(function (e) {
+        e.preventDefault();
+        
+        $.ajax({
+            url: "{% url 'sort_products' %}",
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function (data) {
+                var productList = $("#product-list");
+                productList.empty();
+                $.each(data.products, function (index, product) {
+                    productList.append("<div>" + product.name + " - $" + product.price + "</div>");
+                });
+            }
+        });
+    });
+});
+</script>

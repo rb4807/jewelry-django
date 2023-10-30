@@ -1,0 +1,508 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="{% static 'css/explore.css' %}">
+        <link rel="stylesheet" href="{% static 'css/collection.css' %}">
+        <link rel="stylesheet" href="{% static 'css/gender.css' %}">
+        <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+        <link rel="stylesheet" href="{% static 'css/drop.css' %}">
+        <link rel="stylesheet" href="{% static 'css/search.css' %}">
+        <link rel="stylesheet" href="{% static 'css/stock.css' %}">
+        <title>Home</title>
+    </head>
+    <style>
+        html{
+        scroll-behavior: smooth;
+        width: 100%;
+        }
+        body 
+        {
+            background-image: linear-gradient(rgb(8, 7, 7), rgba(0, 0, 0, 0.24)),url('{% static 'images/main.jpg' %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Open Sans', sans-serif;   
+        }
+    </style>
+    <body>
+
+        <!-- navigation -->
+        <nav1 class="text-white text-white flex justify-between items-center py-4 px-5">
+            <h1 class=" ml-[13%] text-xl font-bold">Mahila</h1>
+            <div class="searchbar">
+                <div class="searchbar-wrapper">
+                    <div class="searchbar-left">
+                        <div class="search-icon-wrapper">
+                            <span class="search-icon searchbar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                    </path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <form action="{% url 'search' %}" method="get">
+                        <div class="searchbar-center">
+                            <div class="searchbar-input-spacer"></div>
+                            <input type="search" type="submit" name="query" class="searchbar-input" maxlength="2048" autocapitalize="off" autocomplete="off"  placeholder="Search your favorite">
+                        </div>
+                    </form>
+                </div>
+            </div>  
+            <ul class="flex space-x-10 text-white">
+                {% if user.is_authenticated %}
+                <li>Hello, {{user.first_name}}</li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'profile' %}"><img class="w-[2rem] rounded-full" src="{% if user_profile.profile_photo %} {{ user_profile.profile_photo.url }} {% else %}{% static 'images/explore/default.png' %}{% endif %}" alt="Profile Photo"></a>                
+            </ul>
+                {% else %}
+                <li> 
+                    <a href ="{% url 'register' %}" target="blank">Register</a>  
+                </li>
+                <li> 
+                    <a href ="{% url 'login' %}" target="blank">Login</a>       
+                </li>
+                {% endif %}
+            </ul>   
+        </nav1>
+
+        <nav>
+            <div class="wrapper">
+                <ul class="nav-links">
+                    <li>
+                        <a href="#" class="desktop-item">Gold</a>
+                        <input type="checkbox" id="showMega">
+                        <label for="showMega" class="mobile-item">Mega Menu</label>
+                        <div class="mega-box">
+                            <div class="content">
+                                <div class="row">
+                                    <ul class="mega-links">
+                                    <li><a href="{% url 'bangle' %}">Bangle</a></li>
+                                    <li><a href="{% url 'chain' %}">Chain</a></li>
+                                    <li><a href="{% url 'bracelets' %}">Bracelet</a></li>
+                                    <li><a href="{% url 'couple' %}">Couple Ring</a></li>
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <ul class="mega-links">
+                                    <li><a href="{% url 'earrings' %}">Earring</a></li>
+                                    <li><a href="{% url 'coin' %}">Gold Coin</a></li>
+                                    <li><a href="{% url 'mangalsutra' %}">Mangalsutra</a></li>
+                                    <li><a href="{% url 'neckwear' %}">Neckwear</a></li>
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <ul class="mega-links">
+                                    <li><a href="{% url 'nosepin' %}">Nosepin</a></li>
+                                    <li><a href="{% url 'set' %}">Pendant Set</a></li>
+                                    <li><a href="{% url 'ring' %}">Ring</a></li>
+                                    <li><a href="{% url 'pendant' %}">Pendant</a></li>
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <img src="{% static 'images/gold.jpg' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav-links">
+                    <li><a href="{% url 'diamond' %}">Diamond</a></li>
+                    <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+                </ul>
+                <ul class="nav-links">
+                    <li>
+                        <a href="#" class="desktop-item">Silver</a>
+                        <input type="checkbox" id="showMega">
+                        <label for="showMega" class="mobile-item">Mega Menu</label>
+                        <div class="mega-box">
+                            <div class="content">
+                                <div class="row">
+                                    <img src="{% static 'images/silver.jpg' %}" alt="">
+                                </div>
+                                <div class="row">
+                                    <ul class="mega-links">
+                                    <li><a href="{% url 'silver_anklet' %}">Anklet</a></li>
+                                    <li><a href="{% url 'silver_bangle' %}">Bangle</a></li>
+                                    <li><a href="{% url 'silver_bracelet' %}">Bracelet</a></li>
+                                    <li><a href="{% url 'silver_coin' %}">Coin</a></li>
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <ul class="mega-links">
+                                    <li><a href="{% url 'silver_earrings' %}">Earring</a></li>
+                                    <li><a href="{% url 'silver_necklace' %}">Neckwear</a></li>
+                                    <li><a href="{% url 'silver_pendant' %}">Pendant</a></li>
+                                    <li><a href="{% url 'silver_ring' %}">Ring</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- carousel -->
+        <div class="body">
+            <!--image slider start-->
+            <div class="slider">
+                <div class="slides">
+                    <!--radio buttons start-->
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <input type="radio" name="radio-btn" id="radio4">
+                    <!--radio buttons end-->
+                    <!--slide images start-->
+                    <div class="slide first">
+                        <img src="{% static 'images/explore/1.webp' %}" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="{% static 'images/explore/2.webp' %}" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="{% static 'images/explore/3.webp' %}" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="{% static 'images/explore/4.webp' %}" alt="">
+                    </div>
+                    <!--slide images end-->
+                    <!--automatic navigation start-->
+                    <div class="navigation-auto">
+                        <div class="auto-btn1"></div>
+                        <div class="auto-btn2"></div>
+                        <div class="auto-btn3"></div>
+                        <div class="auto-btn4"></div>
+                    </div>
+                    <!--automatic navigation end-->
+                </div>
+                <!--manual navigation start-->
+                <div class="navigation-manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                    <label for="radio4" class="manual-btn"></label>
+                </div>
+                <!--manual navigation end-->
+            </div>
+            <!--image slider end-->
+        </div> 
+
+        <!-- collection -->
+        <h1 class=" text-5xl font-bold text-white mt-[1.5%] ml-[25%]">Shop Jewellery By Category</h1>
+        <p class="text-l text-white text-2xl ml-[23%] mt-[1.5%] mb-[2%]">Browse through your favourite categories. We've got them all!</p>
+        <hr>
+        <div class="collection">
+            <div class="container">
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'bangle' %}">
+                            <img src="{% static 'images/explore/Bangle.webp' %}">
+                            <h4 class="mt-[3%] text-white">Bangle</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'bracelets' %}">
+                            <img src="{% static 'images/explore/bracelets.webp' %}">
+                            <h4 class="mt-[3%] text-white">Bracelets</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'chain' %}">
+                            <img src="{% static 'images/explore/Chain.webp' %}">
+                            <h4 class="mt-[3%] text-white">Chain</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'couple' %}">
+                            <img src="{% static 'images/explore/CoupleRing.webp' %}">
+                            <h4 class="mt-[3%] text-white">Couple Ring</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'earrings' %}">
+                            <img src="{% static 'images/explore/earrings.webp' %}">
+                            <h4 class="mt-[3%] text-white">Earrings</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'coin' %}">
+                            <img src="{% static 'images/explore/GoldCoin.webp' %}">
+                            <h4 class="mt-[3%] text-white">Gold Coin</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'mangalsutra' %}">
+                            <img src="{% static 'images/explore/mangalsutras.webp' %}">
+                            <h4 class="mt-[3%] text-white">Mangal Sutras</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'neckwear' %}">
+                            <img src="{% static 'images/explore/Neckwear.webp' %}">
+                            <h4 class="mt-[3%] text-white">Neckwear</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'nosepin' %}">
+                            <img src="{% static 'images/explore/nosepins.webp' %}">
+                            <h4 class="mt-[3%] text-white">Nosepins</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'set' %}">
+                            <img src="{% static 'images/explore/pendant-set.webp' %}">
+                            <h4 class="mt-[3%] text-white">Pendant-set</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'ring' %}">
+                            <img src="{% static 'images/explore/Ring.webp' %}">
+                            <h4 class="mt-[3%] text-white">Ring</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <a href="{% url 'pendant' %}">
+                            <img src="{% static 'images/explore/Pendant.webp' %}">
+                            <h4 class="mt-[3%] text-white">Pendant</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop by gender -->
+        <h1 class=" text-5xl font-bold text-white ml-[37%] ">Shop by gender</h1>
+        <p class="text-l text-white text-2xl ml-[31%] mt-[1.5%] mb-[2%]">Explore our latest designs curated just for you!</p>
+        <hr>
+        <div class="gender">
+            <div class="containers">
+                <div class="cards">
+                    <div class="imgs">
+                        <a href="{% url 'men' %}">
+                            <img src="{% static 'images/explore/bridegroom.jpg' %}">
+                            <h4 class="mt-[3%] text-white">Men</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="cards">
+                    <div class="imgs">
+                        <a href="{% url 'women' %}">
+                            <img src="{% static 'images/explore/bride.jpg' %}">
+                            <h4 class="mt-[3%] text-white">Women</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="cards">
+                    <div class="imgs">
+                        <a href="{% url 'kid' %}">
+                            <img src="{% static 'images/explore/kid.jpg' %}">
+                            <h4 class="mt-[3%] text-white">Kids</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- video -->
+        <div class="relative">
+            <div class="bg-video" >
+                <video class="bg-video__content ml-[2%] mt-[3%] mb-[2%] w-[50%] h-[10%] rounded-lg" autoplay muted loop width="1500" height="200">
+                    <source src="{% static 'images/explore/Promo video 1.mp4' %}" type="video/mp4">
+                </video>
+            </div>
+            <div class="absolute top-[25%] left-[55%]">
+                <h1 class=" text-5xl font-bold text-white">Gift the perfect sparkle</h1>
+                <h1 class="mt-[3%] ml-[1.5%] text-5xl font-bold text-white">to your loved ones.</h1>
+            </div>
+            <div class="absolute top-[55%] left-[66%]">
+                <a href ="#" target="blank">
+                    <button class="ml-[10%] mt-[15%] px-8 py-2 text-sm text-zinc-200 font-semibold rounded-full border border-zinc-200 hover:text-white hover:bg-amber-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-zinc-200 focus:ring-offset-2">Explore</button>
+                </a>
+            </div>
+        </div>
+        <div class="relative">
+            <div class="absolute top-[9%] left-[2%]">
+                <h1 class=" text-5xl font-bold text-white mt-[5%]">Marbles of the Mahila</h1>
+                <h1 class="mt-[3%] ml-[1.5%] text-5xl font-bold text-white">arch, will help to pick</h1>
+                <h1 class="mt-[3%] ml-[1.5%] text-5xl font-bold text-white">up the ador one.</h1>
+            </div>
+            <div class="absolute top-[45%] left-[15%]">
+                <a href ="{% url 'staff' %}" target="blank">
+                    <button class="ml-[10%] mt-[75%] px-8 py-2 text-sm text-zinc-200 font-semibold rounded-full border border-zinc-200 hover:text-white hover:bg-amber-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-zinc-200 focus:ring-offset-2">Staffs</button>
+                </a>
+            </div>
+            <div class="bg-video" >
+                <video class="bg-video__content ml-[48%] mt-[3%] mb-[2%] w-[50%] h-[10%] rounded-lg" autoplay muted loop width="1500" height="200">
+                    <source src="{% static 'images/explore/staff.mp4' %}" type="video/mp4">
+                </video>
+            </div>
+        </div> 
+        <div class="relative">
+            <div class="bg-video" >
+                <video class="bg-video__content ml-[2%] mt-[3%] mb-[2%] w-[50%] h-[10%] rounded-lg" autoplay muted loop width="1500" height="200">
+                    <source src="{% static 'images/explore/customer.mp4' %}" type="video/mp4">
+                </video>
+            </div>
+            <div class="absolute top-[9%] left-[55%]">
+                <h1 class=" text-5xl font-bold text-white mt-[2%]">Over 1,00,000 satisfied customers to share</h1>
+                <h1 class="mt-[1%] text-5xl font-bold text-white">their experience and joy.</h1>
+            </div>
+            <div class="absolute top-[50%] left-[66%]">
+                {% if user.is_authenticated %}
+                    <a href ="{% url 'create_comment' %}" target="blank">
+                        <button class="ml-[15%] mt-[55%] px-8 py-2 text-sm text-zinc-200 font-semibold rounded-full border border-zinc-200 hover:text-white hover:bg-amber-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-zinc-200 focus:ring-offset-2">Reviews</button>
+                    </a>
+                {% else %}
+                    <a href ="{% url 'login' %}" target="blank">
+                        <button class="ml-[15%] mt-[55%] px-8 py-2 text-sm text-zinc-200 font-semibold rounded-full border border-zinc-200 hover:text-white hover:bg-amber-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-zinc-200 focus:ring-offset-2">Reviews</button>
+                    </a>
+                {% endif %} 
+            </div>
+        </div>
+
+        <!-- footer -->
+        <nav class="bg-gradient-to-r from-black to-transparent text-white py-0 px-4 mt-[2%]" id="support">
+            <p class="text-white text-2xl ml-[40%] mt-[5%] mb-[2%]">Brand Promise for Gold Jewellery</p>
+            <hr>
+            <ul class="flex flex-wrap justify-evenly  space-x-10 ml-[10%] mt-[2%]">
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">BIS Hallmarked</h1>
+                    <div class="flex flex-col ml-[15%]">
+                        <img class="w-[10rem] mt-[13%]" src="{% static 'images/bis.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Certified Diamonds</h1>
+                    <div class="flex flex-col">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate ml-[29%]" width="100" height="100" viewBox="0 0 24 24" stroke-width="2" stroke="#FFA41B" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M15 15m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                            <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5" />
+                            <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73" />
+                            <path d="M6 9l12 0" />
+                            <path d="M6 12l3 0" />
+                            <path d="M6 15l2 0" />
+                        </svg>            
+                    </div>  
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Lifetime Exchange</h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-exchange ml-[29%]" width="100" height="100" viewBox="0 0 24 24" stroke-width="2" stroke="#FFA41B" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 10h14l-4 -4" />
+                        <path d="M17 14h-14l4 4" />
+                    </svg>   
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Easy 10 days return</h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-truck-return ml-[29%]" width="100" height="100" viewBox="0 0 24 24" stroke-width="2" stroke="#FFA41B" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v6h-5l2 2m0 -4l-2 2" />
+                        <path d="M9 17l6 0" />
+                        <path d="M13 6h5l3 5v6h-2" />
+                    </svg>  
+                </div>
+            </ul>
+        </nav>
+        <nav class="bg-gradient-to-r from-black to-transparent text-white py-4 px-5" id="support">
+            <ul class="flex space-x-10 mb-8">
+                <div class="flex flex-col ml-[10%] ">
+                    <h1 class="text-2xl font-bold">Our Services</h1>
+                    <li>
+                        <a href="{% url 'book_appointment' %}">Appointments</a><br><a href="{% url 'repair' %}">Repair and fix</a><br><a href="{% url 'piercing' %}">Ear Piercing</a><br><a href="{% url 'piercing' %}">Nose Piercing</a><br><a href="{% url 'polish' %}">Gold Polishing</a>
+                    </li>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Useful Links</h1>
+                    <li>
+                        <a href="">Delivery Information<br>International Shipping<br>Payment Option<br>Track Your Order<br>Return<br>Find a store</a>
+                    </li>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Contact Us</h1>
+                    <li>
+                        <a href="https://www.facebook.com">Facebook</a><br><a href="https://twitter.com"/>Twitter</a><br><a href="https://www.youtube.com"/>YouTube</a>
+                    </li>
+                </div>  
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Mail Us:</h1>
+                    <li>
+                        <a href="{% url 'contact' %}">mahila@gmail.com<br> <h1 class=" text-xl font-bold">Telephone:</h1>0123-456789</a>
+                    </li>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Registered Showroom Address:</h1>
+                    <li>
+                        <a href="https://www.google.com/maps/">ABCD Mall,<br>Mahila Fashion Jewellery,<br> G B Road, Palakkad, 678001,<br>Kerala, India</a>
+                    </li>
+                </div>
+            </ul>
+            <hr>
+            <div class="mt-[2%] text-center">
+                <p>
+                    &copy; 2023 Mahila Fashion Jewellery. All rights reserved. |
+                    <a href="#">Privacy Policy</a> | <a href="#">Terms and Conditions</a>
+                </p>
+            </div>
+        </nav>
+
+        <script type="text/javascript">
+            var counter = 1;
+            setInterval(function(){
+            document.getElementById('radio' + counter).checked = true;
+            counter++;
+            if(counter > 4){
+                counter = 1;
+            }
+            }, 5000);
+        
+            window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
+                }
+            }
+            }; 
+        </script>   
+        <script src="{% static 'js/drop.js'%}"></script>
+    </body>
+</html>

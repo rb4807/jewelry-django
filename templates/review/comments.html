@@ -1,0 +1,31 @@
+{% extends 'review/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container mx-auto py-10">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h1 class="text-2xl font-semibold mb-4">Reviews</h1>
+            <a href="{% url 'create_comment' %}" class="bg-blue-500 ml-[75%] text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">Go Back</a>
+            {% for comment in user_comments %}
+                <div class="bg-gray-50 p-4 rounded-lg shadow mb-4">
+                    <div class="flex items-center mb-2">
+                        {% if user_profile.profile_photo %}
+                        <img src="{{ user_profile.profile_photo.url }}" alt="{{ comment.user.username }}" class=" inline-block w-8 h-8 object-cover" >
+                        {% else %}
+                        <img src="{% static 'images/explore/default.png' %}" alt="default Photo" class=" inline-block w-8 h-8 object-cover">
+                        {% endif %} 
+                        <h2 class="text-lg font-semibold ml-4">{{ comment.user.username }}</h2>
+                        <a class="ml-10" href="{% url 'update_comment' comment.id %}"><button class=" bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-1 rounded">Edit</button></a>
+                        <form method="post" action="{% url 'delete_comment' comment.id %}" class="ml-4">
+                            {% csrf_token %}
+                            <input type="submit" value="Delete" class="bg-red-500 hover:bg-red-600 text-white font-semibold ml-2 px-3 py-1 rounded">
+                        </form>        
+                    </div> 
+                    <div>
+                        <p class="text-gray-600">Posted on {{ comment.created }}</p>
+                    </div>
+                    <p class="text-gray-700">{{ comment.text }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js " integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n " crossorigin="anonymous "></script>
+        <title>Booking</title>
+        <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+        <style>
+            #cart{
+                width:80px;
+                height:80px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <i style="color: rgb(255, 255, 50);"></i>Mahila
+            </a>
+        </nav>
+        <div class="container">
+            <h1 class="text-center my-5">Card Payment</h1>
+            <div class="tab-content">
+                <div class="tab-pane active" id="step1">
+                    <div class="row text-center">
+                        <div class="col-sm col-12">
+                            <div class="alert alert-primary bg-alert-bg" role="alert">Please complete your payment</div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="card border-0">
+                                                <h1 class="text-2xl text-center p-8 text-bold">Complete your payment using Credit/Debit Card</h1>
+                                                <div class="flex justify-center"> 
+                                                    <img class="w-[30%] p-4" src="{% static 'images/card.png' %}">
+                                                </div>
+                                                <div class="flex justify-center">   
+                                                    <form action="{% url 'charge' %}" method="post">
+                                                        {% csrf_token %}
+                                                        <script src="http://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ key }}" data-description="Payment Gateway" data-amount="8138500" data-locale="auto"></script>
+                                                    </form> 
+                                                </div>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js " integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6 " crossorigin="anonymous "></script>
+    </body>
+</html>

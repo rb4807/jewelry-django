@@ -1,0 +1,39 @@
+.collection{
+    display: flex;
+    justify-content: center;
+    
+
+}
+
+.container{
+    position: relative;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px;
+    margin-top: 8%;
+    gap: 90px;
+}
+
+
+
+.container .card .img{
+    position: relative;
+    width: 260px;
+    height: 260px;
+    top: -60px;
+    left: 20px;
+    box-shadow: 0 5px 20px rbga (0,0,0,1.2);
+}
+
+.container .card .img img
+{
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.img:hover img{
+    transform: scale(1.1);
+}

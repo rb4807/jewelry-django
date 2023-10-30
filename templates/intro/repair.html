@@ -1,0 +1,11 @@
+{% extends 'intro/base.html' %}
+{% load static %}
+{% block content %}
+    <h1 class="text-center text-white text-4xl">Rework & Repair your Ornaments</h1>   
+    <div class="flex flex-row">                    
+        <video class="bg-video__content ml-[2%] mt-[3%] mb-[2%] w-[50%] h-[10%] rounded-lg" autoplay muted loop width="1500" height="200">
+            <source src="{% static 'images/repair.mp4' %}" type="video/mp4">
+        </video>
+        <h1 class="text-white text-2xl mt-10 ml-4 ">{% lorem 2 p random %}</h1>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'review/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container mx-auto py-10">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h1 class="text-2xl font-semibold mb-4 inline-block">Reviews</h1>
+            <a href="{% url 'comments_list' %}" class="bg-blue-500 ml-[75%] text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">View your comments</a>                        
+            <div class="mt-6">
+                <h2 class="text-xl font-semibold mb-2">Leave a Comment</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold">Comment</label>
+                        <textarea name="comment_text" rows="4" class="w-full p-2 border rounded" required >{{ comment.text }}</textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold">Image</label>
+                        <input type="file" name="image" value="{{ comment.files }}">
+                    </div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>  
+{% endblock %}

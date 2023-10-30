@@ -1,0 +1,30 @@
+from django.contrib import admin
+from .models import Bangle,Chain,Bracelets,Couple,Earrings,Coin,Mangalsutra,Neckwear,Nosepin,Set,Ring,Pendant,Anklet,Ban,Brace,Co,Ear,Neck,Pen,Ri,Diamond,Men,Women,Kid,Product
+
+# Register your models here.
+
+admin.site.register(Bangle)
+admin.site.register(Chain)
+admin.site.register(Bracelets)
+admin.site.register(Couple)
+admin.site.register(Earrings)
+admin.site.register(Coin)
+admin.site.register(Mangalsutra)
+admin.site.register(Neckwear)
+admin.site.register(Nosepin)
+admin.site.register(Set)
+admin.site.register(Ring)
+admin.site.register(Pendant)
+admin.site.register(Anklet)
+admin.site.register(Ban)
+admin.site.register(Brace)
+admin.site.register(Co)
+admin.site.register(Ear)
+admin.site.register(Neck)
+admin.site.register(Pen)
+admin.site.register(Ri)
+admin.site.register(Diamond)
+admin.site.register(Men)
+admin.site.register(Women)
+admin.site.register(Kid)
+admin.site.register(Product)

@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet"> 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/staff.css' %}">
+        <title>Booking Appointments</title>
+    </head>
+    <style>
+        body 
+        {
+            background-image: linear-gradient(rgb(8, 7, 7), rgba(0, 0, 0, 0.24)),url('{% static 'images/main.jpg' %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Open Sans', sans-serif;   
+        }
+
+        
+    </style>
+    <body>
+        <!-- navigation -->
+        <nav class="text-white text-white flex justify-between items-center py-4 px-5">
+            <h1 class=" ml-[13%] text-xl font-bold">Mahila</h1>
+            <ul class="flex space-x-10 text-white">
+                {% if user.is_authenticated %}
+                <li>Hello, {{user.first_name}}<li>
+                <li> 
+                    <a href ="{% url 'logout' %}"  target="blank">Logout</a>       
+                </li>
+                {% else %}
+                <li> 
+                    <a href ="{% url 'register' %}" target="blank">Register</a>       
+                </li>
+                <li> 
+                    <a href ="{% url 'login' %}" target="blank">Login</a>       
+                </li>
+                {% endif %}
+            </ul>   
+        </nav>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <nav class="bg-gradient-to-r from-black to-transparent text-white py-4 px-5 mt-12" id="support">
+            <ul class="flex space-x-10 mb-8">
+                <div class="flex flex-col ml-[10%] ">
+                    <h1 class="text-2xl font-bold">Our Services</h1>
+                    <li>
+                        <a href="{% url 'book_appointment' %}">Appointments</a><br><a href="{% url 'repair' %}">Repair and fix</a><br><a href="{% url 'piercing' %}">Ear Piercing</a><br><a href="{% url 'piercing' %}">Nose Piercing</a><br><a href="{% url 'polish' %}">Gold Polishing</a>
+                    </li>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Useful Links</h1>
+                    <li>
+                        <a href="">Delivery Information<br>International Shipping<br>Payment Option<br>Track Your Order<br>Return<br>Find a store</a>
+                    </li>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Contact Us</h1>
+                    <li>
+                        <a href="https://www.facebook.com">Facebook</a><br><a href="https://twitter.com"/>Twitter</a><br><a href="https://www.youtube.com"/>YouTube</a>
+                    </li>
+                </div>  
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Mail Us:</h1>
+                    <li>
+                        <a href="{% url 'contact' %}">mahila@gmail.com<br> <h1 class=" text-xl font-bold">Telephone:</h1>0123-456789</a>
+                    </li>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class=" text-2xl font-bold">Registered Showroom Address:</h1>
+                    <li>
+                        <a href="https://www.google.com/maps/">ABCD Mall,<br>Mahila Fashion Jewellery,<br> G B Road, Palakkad, 678001,<br>Kerala, India</a>
+                    </li>
+                </div>
+            </ul>
+            <hr>
+            <div class="mt-[2%] text-center">
+                <p>
+                    &copy; 2023 Mahila Fashion Jewellery. All rights reserved. |
+                    <a href="#">Privacy Policy</a> | <a href="#">Terms and Conditions</a>
+                </p>
+            </div>
+        </nav>
+    </body>
+</html>
