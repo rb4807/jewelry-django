@@ -11,6 +11,7 @@ For more explanation on my project please visit the below link.
 <p align="center">Users have the option to authenticate themselves through registration and login, available for both admin and user roles. Additionally, users have the ability to modify their personal information, including their username, first and last name, and profile picture.</p>
 
 <h1 align="center">🛒 Add to Cart</h1>
+<img src"https://www.dropbox.com/scl/fi/vuvqi4iu0flawwslttwlh/add-to-cart.png?rlkey=mq45ea9xspie6z8tr0y4glpvu&dl=0" >
 <p align="center">After the user has been verified and logged in, they will be granted access to add items to their cart. Failure to do so will result in being redirected to the login page. The implemented functionality enables the user to easily add products to their cart, while also providing the option to specify the desired quantity. Furthermore, if the user no longer needs a particular product, they can effortlessly remove it from their cart.</p>
 
 <h1 align="center">💳 Payment Integration</h1>
