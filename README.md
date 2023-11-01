@@ -1,32 +1,192 @@
-<h1 align="center"> Jewelry Shopping Web Application</h1>
-<p align="center">This is my recent web application development. I employed HTML5, TailwindCSS, Ajax, jQuery, and JavaScript for frontend development. As for backend development, I utilized Django Framework, and for database management, I utilized PostgreSQL. For further reference and access, please visit my GitHub repository. The implemented features are listed below.</p>
+
+# Project Title
+
+A brief description of what this project does and who it's for
+
+
+## Flex
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+
+## Support
+
+For support, email fake@fake.com or join our Slack channel.
+
+
+## Tech Stack
+
+**Client:** React, Redux, TailwindCSS
+
+**Server:** Node, Express
+
+
+## Used By
+
+This project is used by the following companies:
+
+- Company 1
+- Company 2
+
+
+## Acknowledgements
+
+ - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+ - [Awesome README](https://github.com/matiassingers/awesome-readme)
+ - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+
+
+## API Reference
+
+#### Get all items
+
+```http
+  GET /api/items
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. Your API key |
+
+#### Get item
+
+```http
+  GET /api/items/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+#### add(num1, num2)
+
+Takes two numbers and returns the sum.
+
+
+## Badges
+
+Add badges from somewhere like: [shields.io](https://shields.io/)
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+
+## Color Reference
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f |
+| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
+| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
+| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
+
+
+## Demo
+
+Insert gif or link to demo
+
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  npm run deploy
+```
+
+
+## Contributing
+
+Contributions are always welcome!
+
+See `contributing.md` for ways to get started.
+
+Please adhere to this project's `code of conduct`.
+
+
+## 🛠 Skills
+Javascript, HTML, CSS...
+
+
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/)
+
+
+# Hi, I'm Katherine! 👋
+
+
+## Installation
+
+Install my-project with npm
+
+```bash
+  npm install my-project
+  cd my-project
+```
+    
+![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+
+
+## Usage/Examples
+
+```javascript
+import Component from 'my-project'
+
+function App() {
+  return <Component />
+}
+```
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://link-to-project
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+
+## Optimizations
+
+What optimizations did you make in your code? E.g. refactors, performance improvements, accessibility
+
+
+## Lessons Learned
+
+What did you learn while building this project? What challenges did you face and how did you overcome them?
+
+
+## Feedback
+
+If you have any feedback, please reach out to us at fake@fake.com
+
+
 ## Features
+
 - Light/dark mode toggle
 - Live previews
 - Fullscreen mode
 - Cross platform
 
-For more explanation on my project please visit the below link.
-<a herf="https://mfj-rb4807.vercel.app/" target="blank">🔗 Link </a>
-
-<h1 align="center">🖼 Landing Page</h1>
-<p align="center">The landing page features a search bar, register button, and login button in the header section. The main section displays products that have been filtered based on their product type and gender. Additionally, there is a button that redirects to a page containing staff details. Furthermore, there are buttons for reviews and sharing reviews that redirect to their respective pages. Finally, the footer section includes a collection of useful links such as contact us, services, and track my nearest shop.</p>
-
-<h1 align="center">🔐 User & Admin Authentication</h1>
-<p align="center">Users have the option to authenticate themselves through registration and login, available for both admin and user roles. Additionally, users have the ability to modify their personal information, including their username, first and last name, and profile picture.</p>
-
-<h1 align="center">🛒 Add to Cart</h1>
-<img align="left width="15px" src="https://dl.dropboxusercontent.com/scl/fi/vuvqi4iu0flawwslttwlh/add-to-cart.png?rlkey=mq45ea9xspie6z8tr0y4glpvu&dl=0"  alt="">
-<p align="right">After the user has been verified and logged in, they will be granted access to add items to their cart. Failure to do so will result in being redirected to the login page. The implemented functionality enables the user to easily add products to their cart, while also providing the option to specify the desired quantity. Furthermore, if the user no longer needs a particular product, they can effortlessly remove it from their cart.</p>
-
-<h1 align="center">💳 Payment Integration</h1>
-<p align="center">After selecting products, customers have the option to proceed with an order by furnishing their delivery address. The payment can be executed through a range of methods, including debit/credit card, online payment, pay later, or cash on delivery. Upon successful completion of the payment, an invoice bill will be automatically generated, which can be downloaded in PDF format. The invoice bill encompasses essential personal information, such as the name and contact number of the individual who placed the order, as well as the delivery address. Additionally, it includes comprehensive order details, such as the product name, quantity, sub total, tax, and the total amount, inclusive of tax.</p>
-
-<h1 align="center">🗓 Staff Appointments</h1>
-<p align="center">Same as add to cart if user is verified and logged in will only grant access to appointments else it will redirect to login page. A time-saving feature has been implemented to enhance customer experience by offering appointments. Customers are now able to schedule appointments with our staff on their preferred day to receive shopping assistance and more. Additionally, customers have the flexibility to cancel their appointments if necessary.</p>
-
-<h1 align="center">📩 Contact Us</h1>
-<p align="center">The implemented Contact Us feature allows users to share their email from their mail address with the shopping app. Presently, the email is directed to my email account and can be customized to meet the administrator's specifications.</p>
-
-<h1 align="center">👤 Admin Features</h1>
-<p align="center">After the administrators has been verified and logged in, they will be granted access to have access to all departments, allowing them to add, edit, and delete any products effortlessly. Which is also falls within the category of CRUD operations.</p>
